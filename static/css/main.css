@@ -1,0 +1,33 @@
+html {
+	box-sizing:border-box;}
+*, *:before, *:after {box-sizing:inherit;
+font-family: 'Raleway', sans-serif;
+}
+
+body {
+  margin:auto;
+  width: 50%;
+  text-align: center;
+  padding:0;
+}
+
+h1 {
+  color:blue;
+}
+
+.contain {
+	
+}
+
+.form {
+	font-size: medium;
+
+}
+
+#button {
+	color: #19AAE8;
+	background-color: #266682;
+	border-radius: 4px;
+	font-size: medium;
+	border: none;
+}
