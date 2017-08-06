@@ -1,21 +1,37 @@
  <!DOCTYPE html>
  <html>
  <head>
- 	<title>{{albumName}}, {{bandName}}</title>
+ 	<title>Collection</title>
  	<meta charset="UTF-8">
  	<link rel="stylesheet" href="/css/main.css"/>
  	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
  </head>
- <body>
- 	{{#albums}}
-	    <br>{{albumName}}
-	    <br>{{bandName}}
-	    <br>{{releaseDate}}
-	    <br>{{recordLabel.labelName}}
-	    <br>{{recordLabel.labelAddress}}
-	    <br>{{topHits}}
-	    <br>
-	  {{/albums}}
+ <body class="album_body">
+ 	<div class="album_box">
+	 	{{#albums}}
+	 	<div class="box">
+	 		<div id="albumname">
+	 			<br>
+		    	<b>{{albumName}}</b>
+		    </div>
+		    <div id="bandname">
+		    	<b>{{bandName}}</b>
+		    </div>
+		    <div id="tophits">
+		    {{topHits}}
+		    </div>
+		    <div id="releasedate">
+		    {{releaseDate}}
+		    </div>
+		    <div id="recordLabel">
+		    {{recordLabel.labelName}}
+		    <br>
+		    {{recordLabel.labelAddress}}
+		    </div>
+		    <br>
+		</div>
+		  {{/albums}}
+	</div>
  </body>
 	</html>
 
