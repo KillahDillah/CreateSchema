@@ -1,21 +1,46 @@
-<form action="/edit" method="post">
-        <div>
-            <input type="text" name="albumName" placeholder="Album Name" value="{{albumName}}" class="form"/>
-        </div>
-        <div>   
-            <input type="text" name="bandName" placeholder="Band Name" value="{{bandName}}" class="form"/>
-        </div>
-        <div>
-            <input type="text" name="releaseDate" placeholder="Release Year" value="{{releaseYear}}" class="form"/>
-        </div>
-        <div>
-            <input type="text" name="labelName" placeholder="Record Label Name" value="{{labelName}}" class="form"/>
-        </div>
-        <div>
-            <input type="text" name="address" placeholder="Record Label Address" value="{{labelAddress}}" class="form"/>
-        </div>  
-        <div>
-            <input type="text" name="hits" placeholder="Top Hits" value="{{topHits}}" class="form"/>
-        </div>
-            <input type="submit" value="Add Album" id="button"/>
-    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit</title>
+  <link rel="stylesheet" href="/css/main.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+<body>
+  <h1>Edit Collection</h1>
+  <form action="/edit" method="post">
+  <input type="hidden" name="_id" value="{{_id}}">
+    <div>
+        <input type="text" name="albumName" placeholder="Album Name" value="{{albumName}}" class="form"/>
+    </div>
+    <div>   
+        <input type="text" name="bandName" placeholder="Band Name" value="{{bandName}}" class="form"/>
+    </div>
+    <div>
+        <input type="text" name="releaseDate" placeholder="Release Year" value="{{releaseDate}}" class="form"/>
+    </div>
+    <div>
+        <input type="text" name="labelName" placeholder="Record Label Name" value="{{recordLabel.labelName}}" class="form"/>
+    </div>
+    <div>
+        <input type="text" name="address" placeholder="Record Label Address" value="{{recordLabel.labelAddress}}" class="form"/>
+    </div>  
+    <div>
+        <input type="text" name="topHits" placeholder="Top Hits" value="{{topHits}}" class="form"/>
+    </div>
+    <div>
+      <input type="text" name="pictureURL" placeholder="Picture URL" value="{{pictureURL}}" class="form"/>
+    </div>
+        <input type="submit" value="Update Album" id="button"/>
+  </form>
+  <form action="/delete" method="post">
+    <input type="hidden" name="_id" value="{{_id}}">
+    <input type="submit" name="delete" value="Delete" id="delete_button" />
+    <script>
+      document.getElementById("delete_button").addEventListener("click", function(){
+          alert("Are you sure you want to DELETE?");
+    });
+    </script>
+  </form>
+</body>
+</html>

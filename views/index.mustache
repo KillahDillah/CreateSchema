@@ -2,15 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Music Collection</title>
   <link rel="stylesheet" href="css/main.css" />
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
 <body class="index_body">
   <div id="header">
-    <h1> Music Collections</h1>
+    <h1>Music Collection</h1>
   </div>
-
   <form action="/albums" method="post" class="contain">
     <div>
         <input type="text" name="albumName" placeholder="Album Name" class="form"/>
@@ -28,12 +27,13 @@
         <input type="text" name="address" placeholder="Record Label Address" class="form"/>
     </div>  
     <div>
-        <input type="text" name="hits" placeholder="Top Hits" class="form"/>
+        <input type="text" name="topHits" placeholder="Top Hits" class="form"/>
+    </div>
+    <div>
+      <input type="text" name="pictureURL" placeholder="Picture URL" class="form"/>
     </div>
         <input type="submit" value="Add Album" id="button"/>
   </form>
-  
-
 </body>
 </html>
 

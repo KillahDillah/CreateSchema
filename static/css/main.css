@@ -4,11 +4,17 @@ html {
 font-family: 'Raleway', sans-serif;
 }
 
-.index_body {
+body {
   margin:auto;
   width: 50%;
   text-align: center;
   padding:0;
+}
+
+.album_body {
+	text-align: center;
+	padding: 0;
+	width: 100%;
 }
 
 h1 {
@@ -25,7 +31,7 @@ h1 {
 
 }
 
-#button {
+#button, #delete_button, #add_another {
 	color: #19AAE8;
 	background-color: #266682;
 	border-radius: 4px;
@@ -34,15 +40,27 @@ h1 {
 }
 
 #albumname {
-	font-size: x-large;	 
+	font-size: x-large;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;	 
 }
 
 .album_box {
 	display: flex;
-	text-align: center;
+	flex-wrap: wrap;
+	justify-content: space-around;
 }
 
 .box {
 	margin-right: 15px;
-	width: 50%;
+	margin-bottom: 30px;
+	width: 250px;
+	height: 300px;
 }
+
+img {
+	width: 150px;
+	height: 150px;
+}
+

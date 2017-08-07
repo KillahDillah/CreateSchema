@@ -17,16 +17,19 @@ app.get("/", function(req, res, next){
 })
 
 app.get("/albums", function(req,res,next){
-  AlbumModel.find()
+  AlbumModel.find().sort({
+    releaseDate:-1
+  })
     .then(function(searchResults){
       res.render("album",{
         albums: searchResults
       })
     })
-    .catch (function(error){
+    .catch(function(error){
       res.render ('album')
     })
 })
+
 
 app.post ('/albums', function(req,res,next){
   var data = {
@@ -37,9 +40,9 @@ app.post ('/albums', function(req,res,next){
       labelName: req.body.labelName,
       labelAddress: req.body.address
     },
-    topHits: req.body.hits
+    topHits: req.body.topHits,
+    pictureURL: req.body.pictureURL
   }
-  console.log (data)
   var album = new AlbumModel(data)
   album.save()
     .then(function(){
@@ -50,23 +53,69 @@ app.post ('/albums', function(req,res,next){
     })
 })
 
+
 app.get ('/edit/:albumName', function(req,res,next){
-  db.AlbumModel.findOne({albumName:req.param.albumName })
+  AlbumModel.findOne({albumName:req.params.albumName })  // deleted db. as it was not defined
     .then(function(searchResults){
+      console.log(searchResults)
       res.render("edit",{
+        _id: searchResults._id,
         albumName: searchResults.albumName,
         bandName: searchResults.bandName,
         releaseDate: searchResults.releaseDate,
         recordLabel: {
-          labelName: searchResults.labelName,
-          labelAddress: searchResults.labelAddress
+          labelName: searchResults.recordLabel.labelName,
+          labelAddress: searchResults.recordLabel.labelAddress
         },
-        topHits: searchResults.topHits
+        topHits: searchResults.topHits,
+        pictureURL: searchResults.pictureURL
+
       })
     })
-    .catch (function(error){
+    .catch(function(error){
       res.render ('index')
     })
+})
+
+app.post('/edit', function(req,res,next){
+console.log (req.body)
+var query = {"_id":req.body._id}
+var updateDB = {
+  "$set": {
+    "albumName":req.body.albumName,    // can I use the same name (albumName)?
+    "bandName": req.body.bandName,
+    "releaseDate": req.body.releaseDate,
+    "recordLabel":{
+      "labelName": req.body.labelName,
+      "labelAddress": req.body.address
+    },
+    "topHits": req.body.topHits,
+    "pictureURL": req.body.pictureURL
+  }
+};
+  console.log (updateDB)
+  AlbumModel.update(query, updateDB)
+  .then(function(albumModel){
+    res.redirect("/albums")
+  })
+  .catch(function(error){
+    console.log ('AHH, real monsters')
+  })
+})
+
+app.post('/delete', function(req,res,next){
+  var query = {"_id":req.body._id}
+  AlbumModel.remove(query)
+  .then(function(){
+    res.redirect('/albums')
+  })
+  .catch(function(){
+    console.log ('not good!')
+  })
+})
+
+app.post("/", function(req,res,next){
+  res.redirect('/')
 })
 
 app.listen(3000, function(){

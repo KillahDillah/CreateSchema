@@ -13,7 +13,8 @@ const recordSchema = new mongoose.Schema ({
         labelName: {type: String},
         labelAddress: {type: String}
     },
-    topHits: {type: String, default: 1}
+    topHits: {type: String, default: 1},
+    pictureURL: {type: String}
 })
 
 
